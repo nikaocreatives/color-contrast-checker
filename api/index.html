@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Color Contrast Checker</title>
+  <!-- Fav -->
+  <link rel="icon" href="../img/favicon.png" type="image/png" sizes="32x32">
+  <!-- Style -->
+  <link rel="stylesheet" href="../css/minireset.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <!-- Color Checker API -->
+  <!-- <script src="api/color-checker.js" charset="utf-8"></script> -->
+</head>
+<body>
+  <!-- BG -->
+  <div class="bg"></div>
+  <!-- navbar -->
+  <nav id="nav" class="">
+    <img class="logo-black" src="../img/cc-logo-black.png" alt="colorchecker.dev">
+    <img class="logo-white" src="../img/cc-logo-white.png" alt="colorchecker.dev">
+    <div class="nav-items">
+      <a href="../index.html">Checker</a>
+      <a class="active">API</a>
+    </div>
+  </nav>
+  <!-- Colors -->
+  <div class="color-container">
+    <h1>Color Contrast API</h1>
+    <p>The Color Contrast API is really simple. First you need to include color-checker.js which is about ~1MB in size. Download the source file <a href="color-checker.js" download>here</a>.</p>
+    <code>
+      &lt;script src="color-checker.js" charset="utf-8"&gt;&lt;/script&gt;
+    </code>
+    <p>This file exposes a single global function, which takes two hex codes from the url or using the function directly. This returns a whole bunch of data for you to use.</p>
+    <code>
+      // URL <br>
+      www.example.com/?f=000000&b=ffffff
+      <br><br>
+      // Function<br>
+      checkColors(foregroundColor, backgroundColor);
+    </code>
+
+    <p>As mentioned before you get a bunch of data back from the javascript. It's sent via an array to the front end and you can access it like this.</p>
+    <code>
+      var contrast = colorData.contrast;
+    </code>
+    <p>Here's a list of all the data you can all back to the frontend.</p>
+    <code >
+      Foreground: Returns foreground HEX code<br>
+      Background: Returns background HEX code<br>
+      Contrast: Returns true contrast ratio<br>
+      Rounded Contrast: Returns rounded contrast ratio<br>
+      AA Headline: Returns true or false if ratio is greater than 3<br>
+      AAA Headline: Returns true or false if ratio is greater than 4.5<br>
+      AA Text: Returns true or false if ratio is greater than 4.5<br>
+      AAA Text: Returns true or false if ratio is greater than 7<br>
+      AA Component: Returns true or false if ratio is greater than 3<br>
+      Foreground Luma: Returns foreground luma value used to get contrast ratio<br>
+      Background Luma: Returns background luma value used to get contrast ratio
+    </code>
+    <p style="margin-bottom: 0px;">Check out the <a href="../index.html">Color Contrast Checker Demo</a> to see what you could build.</p>
+  </div>
+  <!-- Footer -->
+  <footer id="footer">Made with love by <a href="http://nikao.io" target="_blank">Nikao Creatives</a></footer>
+
+
+  <script type="text/javascript">
+
+  </script>
+</body>
+</html>

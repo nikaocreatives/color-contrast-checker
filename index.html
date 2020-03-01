@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Color Contrast Checker</title>
+  <!-- Fav -->
+  <link rel="icon" href="img/favicon.png" type="image/png" sizes="32x32">
+  <!-- Style -->
+  <link rel="stylesheet" href="css/minireset.css">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Color Checker API -->
+  <script src="api/color-checker.js" charset="utf-8"></script>
+</head>
+<body>
+  <!-- BG -->
+  <div class="bg"></div>
+  <!-- navbar -->
+  <nav id="nav" class="">
+    <img class="logo-black" src="img/cc-logo-black.png" alt="colorchecker.dev">
+    <img class="logo-white" src="img/cc-logo-white.png" alt="colorchecker.dev">
+    <div class="nav-items">
+      <a class="active">Checker</a>
+      <a href="api/">API</a>
+    </div>
+  </nav>
+  <!-- Colors -->
+  <div class="color-container">
+    <h1>Check Color Contrast</h1>
+    <div class="color-input-section">
+      <div class="foreground-input">
+        <div class="foreground box"></div>
+        <div class="value-input">
+          <label>HEX</label>
+          <input id="foregroundHexColorColor" type="color" name="" value="#4d7cff">
+          <input id="foregroundHexColorText" type="text" name="" value="#4d7cff">
+        </div>
+        <div class="value-input">
+          <label>RGB</label>
+          <input id="foregroundRgbColorText" type="text" name="" value="-" disabled>
+        </div>
+      </div>
+      <div class="background-input">
+        <div class="background box"></div>
+        <div class="value-input">
+          <label>HEX</label>
+          <input id="backgroundHexColorColor" type="color" name="" value="#ffffff">
+          <input id="backgroundHexColorText" type="text" name="" value="#ffffff">
+        </div>
+        <div class="value-input">
+          <label>RGB</label>
+          <input id="backgroundRgbColorText" type="text" name="" value="-" disabled>
+        </div>
+      </div>
+    </div>
+    <div class="line-break"></div>
+    <div class="color-results">
+      <div class="result">
+        <p>Contrast Ratio</p>
+        <p id="contrast">-</p>
+      </div>
+      <div class="result">
+        <p>Text</p>
+        <p id="text" class="">-</p>
+      </div>
+      <div class="result">
+        <p>Headlines</p>
+        <p id="headline" class="">-</p>
+      </div>
+      <div class="result">
+        <p>Components</p>
+        <p id="component" class="">-</p>
+      </div>
+    </div>
+  </div>
+  <!-- Footer -->
+  <footer id="footer">Made with love by <a href="http://nikao.io" target="_blank">Nikao Creatives</a></footer>
+
+
+  <script type="text/javascript">
+    var foregroundHexColor = "#4d7cff";
+    var foregroundColorInput = document.getElementById("foregroundHexColorColor");
+    var foregroundTextInput = document.getElementById("foregroundHexColorText");
+    var backgroundHexColor = "#ffffff";
+    var backgroundColorInput = document.getElementById("backgroundHexColorColor");
+    var backgroundTextInput = document.getElementById("backgroundHexColorText");
+
+    checkColors(foregroundHexColor, backgroundHexColor);
+
+    function setText() {
+      if (colorData.aaaText === true) {
+        document.getElementById('text').innerHTML = "AAA"
+        if (document.getElementById('text').classList.contains("fail")) {
+          document.getElementById('text').classList.remove("fail");
+        }
+        document.getElementById('text').classList.add("success");
+      } else if (colorData.aaText === true && colorData.aaaText === false) {
+        document.getElementById('text').innerHTML = "AA"
+        if (document.getElementById('text').classList.contains("fail")) {
+          document.getElementById('text').classList.remove("fail");
+        }
+        document.getElementById('text').classList.add("success");
+      } else {
+        document.getElementById('text').innerHTML = "FAIL"
+        if (document.getElementById('text').classList.contains("success")) {
+          document.getElementById('text').classList.remove("success");
+        }
+        document.getElementById('text').classList.add("fail");
+      }
+    }
+
+    function setHeadline() {
+      if (colorData.aaaHeadline === true) {
+        document.getElementById('headline').innerHTML = "AAA"
+        if (document.getElementById('headline').classList.contains("fail")) {
+          document.getElementById('headline').classList.remove("fail");
+        }
+        document.getElementById('headline').classList.add("success");
+      } else if (colorData.aaHeadline === true && colorData.aaaHeadline === false) {
+        document.getElementById('headline').innerHTML = "AA"
+        if (document.getElementById('headline').classList.contains("fail")) {
+          document.getElementById('headline').classList.remove("fail");
+        }
+        document.getElementById('headline').classList.add("success");
+      } else {
+        document.getElementById('headline').innerHTML = "FAIL"
+        if (document.getElementById('headline').classList.contains("success")) {
+          document.getElementById('headline').classList.remove("success");
+        }
+        document.getElementById('headline').classList.add("fail");
+      }
+    }
+
+    function setComponent() {
+      if (colorData.aaComponent === true) {
+        document.getElementById('component').innerHTML = "AA"
+        if (document.getElementById('component').classList.contains("fail")) {
+          document.getElementById('component').classList.remove("fail");
+        }
+        document.getElementById('component').classList.add("success");
+      } else {
+        document.getElementById('component').innerHTML = "FAIL"
+        if (document.getElementById('component').classList.contains("success")) {
+          document.getElementById('component').classList.remove("success");
+        }
+        document.getElementById('component').classList.add("fail");
+      }
+    }
+
+    function setVariables() {
+      document.body.style.cssText = "--foreground-color:"+foregroundHexColor+"; --background-color:"+backgroundHexColor+";"
+      document.getElementById('contrast').innerHTML = colorData.contrast + ":1";
+      document.getElementById('foregroundRgbColorText').value = "rgb(" + colorData.foregroundRgb + ")";
+      document.getElementById('backgroundRgbColorText').value = "rgb(" + colorData.backgroundRgb + ")";
+      setText()
+      setHeadline()
+      setComponent()
+
+      if (colorData.backgroundLuma < 0.4) {
+        document.getElementById('footer').classList.add("inverse");
+      } else {
+        document.getElementById('footer').classList.remove("inverse");
+      }
+
+      if (colorData.foregroundLuma > 0.4) {
+        document.getElementById('nav').classList.add("inverse");
+      } else {
+        document.getElementById('nav').classList.remove("inverse");
+      }
+    }
+
+    setVariables();
+
+    foregroundColorInput.addEventListener("input", function(){
+      foregroundHexColor = foregroundColorInput.value;
+      foregroundTextInput.value = foregroundHexColor;
+      setVariables()
+      checkColors(foregroundHexColor, backgroundHexColor);
+    });
+
+    foregroundTextInput.addEventListener("input", function(){
+      foregroundHexColor = foregroundTextInput.value;
+      foregroundColorInput.value = foregroundHexColor;
+      setVariables()
+      checkColors(foregroundHexColor, backgroundHexColor);
+    });
+
+    backgroundColorInput.addEventListener("input", function(){
+      backgroundHexColor = backgroundColorInput.value;
+      backgroundTextInput.value = backgroundHexColor;
+      setVariables()
+      checkColors(foregroundHexColor, backgroundHexColor);
+    });
+
+    backgroundTextInput.addEventListener("input", function(){
+      backgroundHexColor = backgroundTextInput.value;
+      backgroundColorInput.value = backgroundHexColor;
+      setVariables()
+      checkColors(foregroundHexColor, backgroundHexColor);
+    });
+
+  </script>
+</body>
+</html>

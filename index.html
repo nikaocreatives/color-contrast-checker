@@ -175,29 +175,29 @@
     foregroundColorInput.addEventListener("input", function(){
       foregroundHexColor = foregroundColorInput.value;
       foregroundTextInput.value = foregroundHexColor;
-      setVariables()
       checkColors(foregroundHexColor, backgroundHexColor);
+      setVariables();
     });
 
     foregroundTextInput.addEventListener("input", function(){
       foregroundHexColor = foregroundTextInput.value;
       foregroundColorInput.value = foregroundHexColor;
-      setVariables()
       checkColors(foregroundHexColor, backgroundHexColor);
+      setVariables();
     });
 
     backgroundColorInput.addEventListener("input", function(){
       backgroundHexColor = backgroundColorInput.value;
       backgroundTextInput.value = backgroundHexColor;
-      setVariables()
       checkColors(foregroundHexColor, backgroundHexColor);
+      setVariables();
     });
 
     backgroundTextInput.addEventListener("input", function(){
       backgroundHexColor = backgroundTextInput.value;
       backgroundColorInput.value = backgroundHexColor;
-      setVariables()
       checkColors(foregroundHexColor, backgroundHexColor);
+      setVariables();
     });
 
   </script>

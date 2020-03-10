@@ -1,4 +1,5 @@
 # Color Contrast API
+Make sure your colors pass accessibility standards with this handy tool.
 
 ## Installation
 The Color Contrast API is really simple. First you need to include color-checker.js which is about 4KB in size. Download the source file [here](https://colorcontrast.dev/api/color-checker.js)

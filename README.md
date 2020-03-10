@@ -1,6 +1,6 @@
 # Color Contrast API
 
-## Installation 
+## Installation
 The Color Contrast API is really simple. First you need to include color-checker.js which is about 4KB in size. Download the source file [here](https://colorcontrast.dev/api/color-checker.js)
 ```
 <script src="color-checker.js" charset="utf-8"></script>
@@ -51,5 +51,5 @@ Check out the Color Contrast Checker [Demo](https://colorcontrast.dev/) to see w
 
 ---
 
-#Contribute
+# Contribute
 Feel free to contribute to the color contrast checker!

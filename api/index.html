@@ -8,11 +8,17 @@
   <!-- Fav -->
   <link rel="icon" href="../img/favicon.png" type="image/png" sizes="32x32">
   <!-- Social Tags -->
-  <meta property="og:title" content="Color Contrast Checker">
-  <meta property="og:description" content="Check that your colors pass accessiblity standards with this handy tool.">
-  <meta property="og:image" content="../img/social.png">
-  <meta property="og:url" content="http://colorcontrast.dev/">
-  <meta property="og:site_name" content="Color Contrast Checker">
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="http://colorcontrast.dev/" />
+  <meta property="og:title" content="Color Contrast Checker" />
+  <meta property="og:image" content="../img/social.png" />
+  <meta property="og:description" content="Check that your colors pass accessiblity standards with this handy tool." />
+  <meta name="twitter:card" content="photo" />
+  <meta name="twitter:site" content="Color Contrast Checker" />
+  <meta name="twitter:creator" content="@chasturansky" />
+  <meta name="twitter:title" content="Color Contrast Checker" />
+  <meta name="twitter:description" content="Check that your colors pass accessiblity standards with this handy tool." />
+  <meta name="twitter:image" content="../img/social.png" />
   <!-- Style -->
   <link rel="stylesheet" href="../css/minireset.css">
   <link rel="stylesheet" href="../css/style.css">
@@ -38,20 +44,20 @@
     <code>
       &lt;script src="color-checker.js" charset="utf-8"&gt;&lt;/script&gt;
     </code>
-    <p>This file exposes a single global function, which takes two hex codes from the url or using the function directly. This returns a whole bunch of data for you to use.</p>
+    <p>This file exposes a single global function, which takes two hex codes from the url or takes two hex codes from a function. This returns a data for you to use.</p>
     <code>
       // URL <br>
       www.example.com/?f=000000&b=ffffff
       <br><br>
       // Function<br>
-      checkColors(foregroundColor, backgroundColor);
+      checkColors("ffffff", "000000");
     </code>
 
-    <p>As mentioned before you get a bunch of data back from the javascript. It's sent via an array to the front end and you can access it like this.</p>
+    <p>The data is sent via an array to the front end and you can access it like this.
     <code>
       var contrast = colorData.contrast;
     </code>
-    <p>Here's a list of all the data you can all back to the frontend.</p>
+    <p>Here's a list of all the data you can call to the frontend.</p>
     <code >
       Foreground: Returns foreground HEX code<br>
       Background: Returns background HEX code<br>
@@ -65,7 +71,7 @@
       Foreground Luma: Returns foreground luma value used to get contrast ratio<br>
       Background Luma: Returns background luma value used to get contrast ratio
     </code>
-    <p style="margin-bottom: 0px;">Check out the <a href="../index.html">Color Contrast Checker Demo</a> to see what you could build.</p>
+    <p style="margin-bottom: 0px;">Check out the Color Contrast Checker <a href="../index.html">Demo</a> to see what you could build.</p>
   </div>
   <!-- Footer -->
   <footer id="footer">Made with love by <a href="http://nikao.io" target="_blank">Nikao Creatives</a></footer>

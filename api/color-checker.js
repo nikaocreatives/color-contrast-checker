@@ -4,29 +4,42 @@ var foregroundHex;
 var backgroundHex;
 var colorData;
 
+// Check if param exists
+var field = 'f';
+var url = window.location.href;
+if(url.indexOf('?' + field + '=') != -1) {
+  // return true;
+  foregroundHex = getUrlVariable('f');
+  backgroundHex = getUrlVariable('b');
+  checkColors(foregroundHex, backgroundHex);
+
+} else if(url.indexOf('&' + field + '=') != -1) {
+  // return true;
+  foregroundHex = getUrlVariable('f');
+  backgroundHex = getUrlVariable('b');
+  checkColors(foregroundHex, backgroundHex);
+}
+
+// Get Url Parameter
+function getUrlVariable(param) {
+  var vars = {};
+  window.location.href.replace( location.hash, '' ).replace(
+    /[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+    function( m, key, value ) { // callback
+      vars[key] = value !== undefined ? value : '';
+    }
+  );
+  if ( param ) {
+    return vars[param] ? vars[param] : null;
+  }
+  return vars;
+};
+
 function checkColors(foregroundColor, backgroundColor) {
   if (foregroundColor && backgroundColor) {
     foregroundHex = foregroundColor;
     backgroundHex = backgroundColor;
-  } else {
-    foregroundHex = getUrlVariable('f');
-    backgroundHex = getUrlVariable('b');
   }
-
-  // Get Url Parameter
-  function getUrlVariable(param) {
-    var vars = {};
-    window.location.href.replace( location.hash, '' ).replace(
-      /[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
-      function( m, key, value ) { // callback
-        vars[key] = value !== undefined ? value : '';
-      }
-    );
-    if ( param ) {
-      return vars[param] ? vars[param] : null;
-    }
-    return vars;
-  };
 
   // Hex to RGB
   function hexToRgb(hex) {

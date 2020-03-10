@@ -1,3 +1,5 @@
+# Testing transparency formula
+
 https://www.viget.com/articles/equating-color-and-transparency/
 
 background * (1 - opacity) + overlay * opacity = target
@@ -33,7 +35,7 @@ rgb(149, 194, 224)
 
 
 
-----------
+---
 
 background * (opacity - 1) + overlay * opacity = target
 
@@ -57,9 +59,7 @@ g
 b
 52 * .3 + 40 * 0.7 = 44
 
-
-
------------
+---
 
 background * (opacity - 1) + overlay * opacity = target
 
